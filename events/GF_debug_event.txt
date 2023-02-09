@@ -1,0 +1,1025 @@
+namespace = gfdebug
+
+country_event = {
+	id = gfdebug.0
+	desc = BLANK_STRING
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = flag_GF_collapse_relic_surveyed
+		set_country_flag = flag_GF_first_zion_comm_completed
+		set_country_flag = flag_GF_established_communication_with_zion
+	}
+
+	option = {
+		name = OK
+		add_resource = {
+			energy = 500000
+		}
+		give_technology = {
+			tech = GF_tech_collapse_relic_tech
+			message = no
+		}
+		give_technology = {
+			tech = GF_tech_collapsetech_weaponize
+			message = no
+		}
+		give_technology = {
+			tech = GF_tech_collapse_energy_lance
+			message = no
+		}
+		give_technology = {
+			tech = GF_tech_collapse_jump_drive
+			message = no
+		}
+		give_technology = {
+			tech = tech_cloning
+			message = no
+		}
+		give_technology = {
+			tech = tech_quantum_catapult
+			message = no
+		}
+		add_relic = GF_relic_orb_mainframe_alpha
+		set_variable = {
+			which = v_GF_zion_favor
+			value = 50
+		}
+	}
+
+	after = {
+		country_event = {
+			id = gfdebug.1
+			days = 31
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.1
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		end_event_chain = GF_collect_relic_device_event_chain
+	}
+}
+
+country_event = {
+	id = gfdebug.2
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_owned_leader = {
+			limit = {
+				NOT = { leader_class = ruler }
+			}
+			save_event_target_as = choosing_leader
+		}
+		country_event = {
+			id = GF_zion_project.32204
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.3
+
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		random_owned_species = {
+			limit = { has_trait = GF_trait_doll }
+			save_event_target_as = doll
+		}
+		while = {
+			count = 3
+			create_leader = {
+				species = event_target:doll
+				class = random
+				traits = {
+					trait = GF_trait_leader_doll
+					trait = leader_trait_stubborn
+				}
+			}
+		}
+	}
+
+	after = {
+		export_trigger_value_to_variable = {
+			trigger = count_owned_leader
+			parameters = { limit = { species = { is_robotic = yes } GF_leader_has_vanilla_negative_traits = yes } }
+			variable = lcnt
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.4
+
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		### Tier 1
+		add_modifier = { modifier = GF_zion_deep_dive_all_research_speed_1 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_all_research_produces_1 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_physics_research_produces_1 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_society_research_produces_1 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_engineering_research_produces_1 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_robotic_produces_1 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_base_intel_1 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_crime_1 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_planet_development_1 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_army_exp_1 years = 3 }
+		# debuff
+		add_modifier = { modifier = GF_zion_deep_dive_all_research_speed_n_1 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_robot_produces_n_1 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_crime_n_1 years = 3 }
+		### Tier 2
+		add_modifier = { modifier = GF_zion_deep_dive_all_research_produces_2 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_planet_development_2 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_army_exp_2 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_robotic_produces_2 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_ship_fire_power_2 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_ship_exp_2 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_empire_size_2 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_station_produces_2 years = 3 }
+		# debuff
+		add_modifier = { modifier = GF_zion_deep_dive_ship_fire_power_n_2 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_empire_size_n_2 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_all_research_speed_n_2 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_robot_produces_n_2 years = 3 }
+		### Tier 3
+		add_modifier = { modifier = GF_zion_deep_dive_research_3 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_production_3 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_diplomacy_3 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_fleet_3 years = 3 }
+		# debuff
+		add_modifier = { modifier = GF_zion_deep_dive_research_n_3 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_production_n_3 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_diplomacy_n_3 years = 3 }
+		add_modifier = { modifier = GF_zion_deep_dive_fleet_n_3 years = 3 }
+		# Tier 4
+		add_modifier = { modifier = GF_zion_deep_dive_data_horizon years = 3 }
+	}
+}
+
+country_event = {
+	id = gfdebug.5
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		every_owned_species = {
+			limit = {
+				has_trait = GF_trait_sequela
+			}
+			change_species_characteristics = {
+				add_trait = GF_trait_sequela_immune
+				remove_trait = GF_trait_sequela
+				add_traits_at_start_of_list = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.6
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		add_resource = {
+			energy = 500000
+			unity  = 500000
+		}
+		add_modifier = {
+			modifier = sponsored_rebels
+			multiplier = 1000
+		}
+		add_relic = GF_relic_data_singularity
+	}
+}
+
+country_event = {
+	id = gfdebug.7
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+
+		capital_scope = {
+			create_species = {
+				name = random
+				class = ROBOT
+				traits = random
+				effect = {
+					save_event_target_as = robot_species
+				}
+			}
+			while = {
+				count = 5
+				create_pop = {
+					species = event_target:robot_species
+					ethos = root
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.8
+	is_triggered_only = yes
+	
+	option = {
+		name = OK
+		add_resource = {
+			influence = 1000
+		}
+		add_modifier = {
+			modifier = GF_debug_modifier
+			multiplier = 5000
+		}
+		random_system = {
+			limit = {
+				any_neighbor_system = {
+					NOR = {
+						exists = owner
+						exists = space_owner
+					}
+				}
+				distance = {
+					source = root.capital_scope.solar_system
+					min_jumps = 3
+					max_jumps = 5
+				}
+				NOT = {
+					any_fleet_in_system = {
+						owner = { is_hostile = root }
+					}
+				}
+				any_system_planet = {
+					is_a_planet = yes
+					NOT = { has_modifier = holy_planet }
+				}
+			}
+			set_surveyed = {
+				surveyed = yes
+				surveyor = root
+			}
+			random_system_planet = {
+				limit = {
+					OR = {
+						is_a_planet = yes
+						habitable_planet = yes
+					}
+					NOR = {
+						has_anomaly = yes
+						exists = archaeological_site
+						has_modifier = holy_planet
+					}
+				}
+				save_event_target_as = colony
+			}
+
+			event_target:colony = {
+				if = {
+					limit = {
+						NOT = { is_planet_class = pc_gaia }
+					}
+					change_pc = pc_gaia
+					reroll_planet = yes
+				}
+				set_planet_size = 30
+				create_colony = {
+					owner = root
+					species = root
+				}
+				while = {
+					count = 15
+					add_district = district_city
+					if = {
+						limit = { num_pops <= 10 }
+						create_pop = { species = root }
+					}
+				}
+			}
+
+			create_starbase = {
+				size = starbase_outpost
+				owner = root.owner
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.9
+	is_triggered_only = yes
+
+	# hide_window = yes
+
+	immediate = {
+		random_owned_species = {
+			limit = { has_trait = GF_trait_doll }
+			save_event_target_as = doll_species
+		}
+	}
+
+	option = {
+		name = OK
+		every_subject = {
+			limit = { is_valid_GF_OGAS_subnet = yes }
+			capital_scope = {
+				while = {
+					count = 20
+					create_pop = { species = event_target:doll_species }
+				}
+			}
+		}
+	}
+}
+
+
+country_event = {
+	id = gfdebug.10
+	is_triggered_only = yes
+
+	trigger = {
+		
+	}
+	immediate = {
+		clear_global_event_target = evt_leader
+		random_owned_leader = { save_global_event_target_as = evt_leader }
+	}
+
+	option = {
+		name = OK
+	}
+}
+
+country_event = {
+	id = gfdebug.11
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		any_owned_pop = {
+			has_trait = GF_trait_doll
+			has_citizenship_rights = yes
+		}
+	}
+
+	immediate = {
+		
+	}
+}
+
+country_event = {
+	id = gfdebug.12
+	is_triggered_only = yes
+
+	diplomatic = yes
+
+	diplomatic_title = "diplomatic_title"
+	title = "event_title"
+	desc = "event_desc"
+
+	custom_gui = "gf_gui_test"
+	custom_gui_option = "gf_gui_test_option"
+	
+	picture_event_data = {
+		portrait = event_target:GF_ogas_leader
+		room = ethic_griffin_room
+	}
+
+	option = {
+		name = "opt_1"
+		is_dialog_only = yes
+		response_text = "AAA"
+		set_country_flag = flag_AAA
+	}
+	option = {
+		name = "opt_2"
+		tooltip = {
+			add_resource = {
+				GF_nyto_collapse_liquid = 500
+			}
+		}
+	}
+	option = {
+		name = "opt_3"
+	}
+	option = {
+		name = "opt_4"
+	}
+	option = {
+		name = "opt_5"
+	}
+	option = {
+		name = "opt_6"
+	}
+	option = {
+		name = "opt_7"
+	}
+	option = {
+		name = "opt_8"
+	}
+	option = {
+		name = "opt_9"
+	}
+	option = {
+		name = "opt_10"
+	}
+}
+
+country_event = {
+	id = gfdebug.13
+	is_triggered_only = yes
+
+	diplomatic = yes
+
+	diplomatic_title = "diplomatic_title"
+	title = "event_title"
+	desc = "event_desc"
+
+	custom_gui = GF_DiplomaticEventWindow
+	custom_gui_option = GF_DiplomaticEventWindow_Option
+	
+	picture_event_data = {
+		portrait = event_target:GF_ogas_leader
+		room = ethic_griffin_room
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { is_variable_set = v_GF_core_chip_mod } }
+			set_variable = {
+				which = v_GF_core_chip_mod
+				value = 1
+			}
+		}
+	}
+
+	option = {
+		name = "OK"
+		add_modifier = {
+			modifier = GF_debug_5
+			multiplier = v_GF_core_chip_mod
+		}
+	}
+	option = {
+		name = "ADD_1"
+		change_variable = {
+			which = v_GF_core_chip_mod
+			value = 1
+		}
+		is_dialog_only = yes
+		response_text = event_desc
+	}
+	option = {
+		name = "ADD_5"
+		change_variable = {
+			which = v_GF_core_chip_mod
+			value = 5
+		}
+		is_dialog_only = yes
+		response_text = event_desc
+	}
+	option = {
+		name = "SUB_5"
+		change_variable = {
+			which = v_GF_core_chip_mod
+			value = -5
+		}
+		is_dialog_only = yes
+		response_text = event_desc
+	}
+	option = {
+		name = "SUB_1"
+		change_variable = {
+			which = v_GF_core_chip_mod
+			value = -1
+		}
+		is_dialog_only = yes
+		response_text = event_desc
+	}
+
+	option = {
+		name = REMOVE
+		allow = { has_modifier = GF_debug_5 }
+		if = {
+			limit = { has_modifier = GF_debug_5 }
+			remove_modifier = GF_debug_5
+		}
+		is_dialog_only = yes
+		response_text = event_desc
+	}
+	option = {
+		name = CANCEL
+	}
+}
+
+@change_interval = 30
+
+country_event = {
+	id = gfdebug.20
+	is_triggered_only = yes
+	
+	hide_window = yes
+
+	immediate = {
+		set_empire_name = "EMPIRE_DESIGN_GF_URNC"
+		change_country_flag = {
+			icon = {
+				category = "gk"
+				file = "griffin_flags_05.dds"
+			}
+			background = {
+				category = "backgrounds"
+				file = "circle.dds"
+			}
+			colors = {
+				"red"
+				"black"
+				"null"
+				"null"
+			}
+		}
+		clear_ethos = yes
+		change_government = { authority = GF_auth_commonwealth civics = { civic = GF_civic_URNC civic = GF_civic_KCCO } }
+		shift_ethic = ethic_militarist
+		shift_ethic = ethic_egalitarian
+		shift_ethic = ethic_materialist
+		
+		country_event = {
+			id = gfdebug.21
+			days = @change_interval
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.21
+	is_triggered_only = yes
+	
+	hide_window = yes
+
+	immediate = {
+		set_empire_name = "EMPIRE_DESIGN_GF_AU"
+		change_country_flag = {
+			icon = {
+				category = "gk"
+				file = "griffin_flags_04.dds"
+			}
+			background = {
+				category = "backgrounds"
+				file = "flag_BG_43.dds"
+			}
+			colors = {
+				"sky_blue"
+				"mist_blue"
+				"null"
+				"null"
+			}
+		}
+		clear_ethos = yes
+		change_government = { authority = GF_auth_commonwealth civics = { civic = GF_civic_AU civic = GF_civic_TASA } }
+		shift_ethic = ethic_authoritarian
+		shift_ethic = ethic_militarist
+		shift_ethic = ethic_materialist
+
+		country_event = {
+			id = gfdebug.22
+			days = @change_interval
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.22
+	is_triggered_only = yes
+	
+	hide_window = yes
+
+	immediate = {
+		set_empire_name = "EMPIRE_DESIGN_GF_GK"
+		change_country_flag = {
+			icon = {
+				category = "gk"
+				file = "griffin_flags_01.dds"
+			}
+			background = {
+				category = "backgrounds"
+				file = "v.dds"
+			}
+			colors = {
+				"dark_grey"
+				"yellow"
+				"null"
+				"null"
+			}
+		}
+		clear_ethos = yes
+		change_government = { authority = GF_auth_commonwealth civics = { civic = GF_civic_GK civic = GF_civic_IOP } }
+		shift_ethic = ethic_egalitarian
+		shift_ethic = ethic_xenophile
+		shift_ethic = ethic_militarist
+	}
+}
+
+country_event = {
+	id = gfdebug.14
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+
+		capital_scope = {
+			create_species = {
+				name = "GF_ANDROID"
+				class = GF_doll
+				portrait = GF_doll
+				name_list = GF_doll_1
+				traits = {
+					trait = GF_trait_doll
+				}
+				effect = {
+					save_event_target_as = doll_species
+				}
+			}
+			while = {
+				count = 5
+				create_pop = {
+					species = event_target:doll_species
+					ethos = root
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.15
+	is_triggered_only = yes
+	
+	option = {
+		name = OK
+		random_owned_species = {
+			limit = { has_trait = GF_trait_doll }
+			save_event_target_as = doll_species
+		}
+		add_resource = {
+			influence = 1000
+		}
+		add_modifier = {
+			modifier = GF_debug_modifier
+			multiplier = 5000
+		}
+		random_system = {
+			limit = {
+				any_neighbor_system = {
+					NOR = {
+						exists = owner
+						exists = space_owner
+					}
+				}
+				distance = {
+					source = root.capital_scope.solar_system
+					min_jumps = 3
+					max_jumps = 5
+				}
+				NOT = {
+					any_fleet_in_system = {
+						owner = { is_hostile = root }
+					}
+				}
+				any_system_planet = { is_a_planet = yes }
+			}
+			set_surveyed = {
+				surveyed = yes
+				surveyor = root
+			}
+			random_system_planet = {
+				limit = {
+					OR = {
+						AND = {
+							is_a_planet = yes
+							is_asteroid = no
+						}
+						habitable_planet = yes
+					}
+					NOR = {
+						has_anomaly = yes
+						exists = archaeological_site
+					}
+				}
+				save_event_target_as = colony
+			}
+
+			event_target:colony = {
+				if = {
+					limit = {
+						NOT = { is_planet_class = pc_gaia }
+					}
+					change_pc = pc_gaia
+					reroll_planet = yes
+				}
+				set_planet_size = 30
+				create_colony = {
+					owner = root
+					species = event_target:doll_species
+				}
+				while = {
+					count = 3
+					create_pop = { species = event_target:doll_species }
+				}
+			}
+
+			create_starbase = {
+				size = starbase_outpost
+				owner = root.owner
+			}
+		}
+	}
+}
+
+
+country_event = {
+	id = gfdebug.100
+	is_triggered_only = yes
+
+	title = BLANK_STRING
+	desc = BLANK_STRING
+
+	diplomatic = yes
+	diplomatic_title = BLANK_STRING
+
+	custom_gui = "temp_ui"
+
+	option = {
+		name = BLANK_STRING
+	}
+}
+
+country_event = {
+	id = gfdebug.101
+	is_triggered_only = yes
+
+	title = BLANK_STRING
+	desc = BLANK_STRING
+
+	immediate = {
+		random_owned_species = {
+			limit = { has_trait = GF_trait_doll }
+			save_event_target_as = doll_species
+		}
+	}
+
+	option = {
+		name = BLANK_STRING
+		add_modifier = { modifier = GF_debug_3 }
+		random_system = {
+			limit = {
+				any_neighbor_system = {
+					NOR = {
+						exists = owner
+						exists = space_owner
+					}
+				}
+				distance = {
+					source = prev
+					min_jumps = 3
+					max_jumps = 5
+				}
+				NOT = {
+					any_fleet_in_system = {
+						owner = { is_hostile = root }
+					}
+				}
+				any_system_planet = {
+					is_a_planet = yes
+					is_moon = no
+					NOT = { has_modifier = holy_planet }
+				}
+			}
+			create_starbase = {
+				size = starbase_outpost
+				owner = root.owner
+			}
+			random_system_planet = {
+				limit = {
+					is_a_planet = yes
+					is_moon = no
+					NOT = { has_modifier = holy_planet }
+				}
+				change_pc = pc_GF_sf_machine
+				clear_deposits = yes
+				set_planet_size = 25
+				create_colony = {
+					owner = root
+					species = event_target:doll_species
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.102
+	is_triggered_only = yes
+
+	title = BLANK_STRING
+	desc = BLANK_STRING
+
+	immediate = {
+	}
+
+	option = {
+		name = BLANK_STRING
+		add_modifier = { modifier = GF_debug_3 }
+		random_system = {
+			limit = {
+				any_neighbor_system = {
+					NOR = {
+						exists = owner
+						exists = space_owner
+					}
+				}
+				distance = {
+					source = prev
+					min_jumps = 3
+					max_jumps = 5
+				}
+				NOT = {
+					any_fleet_in_system = {
+						owner = { is_hostile = root }
+					}
+				}
+				any_system_planet = {
+					is_a_planet = yes
+					is_moon = no
+					NOT = { has_modifier = holy_planet }
+				}
+			}
+			create_starbase = {
+				size = starbase_outpost
+				owner = root
+			}
+			random_system_planet = {
+				limit = {
+					is_a_planet = yes
+					is_moon = no
+					NOT = { has_modifier = holy_planet }
+				}
+				change_pc = pc_GF_sf_machine
+				clear_deposits = yes
+				set_planet_size = 25
+			}
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.103
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	option = {
+		name = "OK"
+		add_modifier = { modifier = GF_debug_3 }
+		capital_scope.solar_system = {
+			closest_system = {
+				min_steps = 2
+				max_steps = 5
+				spawn_system = {
+					min_distance >= 29
+					max_distance <= 31
+					min_orientation_angle = 24
+					max_orientation_angle = 66
+					initializer = GF_sf_system
+				}
+			}
+			last_created_system = {
+				star = {
+					create_ambient_object = {
+						type = "contingency_2"
+						location = this
+					}
+					last_created_ambient_object = {
+						set_ambient_object_flag = contingency_system_effect_2
+						set_location = {
+							target = prev
+							distance = 0
+							angle = random
+						}
+					}
+					set_crisis_sound = ai_empire_ambient_stage_1
+				}
+				set_surveyed = {
+					surveyed = yes
+					surveyor = root
+				}
+				create_starbase = {
+					size = starbase_starfortress
+					owner = root
+
+					module = shipyard
+					module = shipyard
+					module = shipyard
+					module = shipyard
+					module = shipyard
+					module = shipyard
+				}
+			}
+			add_extra_hyperlane_to_spawned_system_effect = yes
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.104
+	
+	is_triggered_only = yes
+	trigger = {
+	}
+
+	immediate = {
+		random_owned_species = {
+			limit = { has_trait = GF_trait_doll }
+			save_event_target_as = doll_species
+		}
+	}
+
+	option = {
+		name = OK
+		if = {
+			limit = {
+				any_owned_leader = {
+					NOT = { has_trait = GF_trait_leader_ogas }
+					species = { has_trait = GF_trait_doll }
+				}
+			}
+			every_owned_leader = {
+				limit = {
+					NOT = { has_trait = GF_trait_leader_ogas }
+					species = { has_trait = GF_trait_doll }
+				}
+				locked_random_list = {
+					1 = { add_trait = leader_trait_stubborn					} # 顽固
+					1 = { add_trait = leader_trait_rigid_programming		} # 死板编程
+					1 = { add_trait = leader_trait_erratic_morality_core	} # 不稳定道德核心
+					1 = { add_trait = leader_trait_unstable_code_base		} # 不稳定代码库
+					1 = { add_trait = leader_trait_substance_abuser			} # 药物依赖
+					1 = { add_trait = leader_trait_arrested_development		} # 没有前途
+					1 = { add_trait = leader_trait_nervous					} # 神经质
+					1 = { add_trait = leader_trait_lethargic				} # 懒散
+					1 = { add_trait = leader_trait_armchair_commander		} # 纸上谈兵
+					1 = { add_trait = leader_trait_paranoid					} # 偏执
+					1 = { add_trait = leader_trait_corrupt					} # 腐败
+					1 = { add_trait = leader_trait_traumatized				} # 受挫
+					1 = { add_trait = leader_trait_maimed					} # 残废
+				}
+			}
+		}
+		else = {
+			while = {
+				count = 5
+				create_leader = {
+					class = scientist
+					species = event_target:doll_species
+
+					effect = {
+						random_list = {
+							1 = { add_trait = leader_trait_stubborn					} # 顽固
+							1 = { add_trait = leader_trait_rigid_programming		} # 死板编程
+							1 = { add_trait = leader_trait_erratic_morality_core	} # 不稳定道德核心
+							1 = { add_trait = leader_trait_unstable_code_base		} # 不稳定代码库
+							1 = { add_trait = leader_trait_substance_abuser			} # 药物依赖
+							1 = { add_trait = leader_trait_arrested_development		} # 没有前途
+							1 = { add_trait = leader_trait_nervous					} # 神经质
+							1 = { add_trait = leader_trait_lethargic				} # 懒散
+							1 = { add_trait = leader_trait_armchair_commander		} # 纸上谈兵
+							1 = { add_trait = leader_trait_paranoid					} # 偏执
+							1 = { add_trait = leader_trait_corrupt					} # 腐败
+							1 = { add_trait = leader_trait_traumatized				} # 受挫
+							1 = { add_trait = leader_trait_maimed					} # 残废
+						}
+					}
+				}
+			}
+			
+		}
+
+	}
+}

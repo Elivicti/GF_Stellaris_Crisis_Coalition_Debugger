@@ -1,0 +1,10 @@
+defined_text = {
+	name = GF_get_archive_title
+	text = {
+		trigger = {
+			has_country_flag = flag_AAA
+		}
+		localization_key = title_AAA
+	}
+	default = default_title
+}

@@ -1,0 +1,43 @@
+
+#debug
+GF_debug_modifier = {
+	country_base_energy_produces_add = 1
+	country_base_minerals_produces_add = 1
+	country_base_food_produces_add = 1
+	country_base_physics_research_produces_add = 1
+	country_base_society_research_produces_add = 1
+	country_base_engineering_research_produces_add = 1
+	country_base_influence_produces_add = 1
+	country_base_unity_produces_add = 1
+	country_base_consumer_goods_produces_add = 1
+	country_base_alloys_produces_add = 1
+	country_base_volatile_motes_produces_add = 1
+	country_base_exotic_gases_produces_add = 1
+	country_base_rare_crystals_produces_add = 1
+	country_base_sr_living_metal_produces_add = 1
+	country_base_sr_zro_produces_add = 1
+	country_base_sr_dark_matter_produces_add = 1
+	country_base_nanites_produces_add = 1
+	country_base_minor_artifacts_produces_add = 1
+}
+
+GF_debug_2 = {
+	GF_planet_jobs_pop_assemblers_produces_mult = 1
+}
+
+GF_debug_3 = {
+	planet_colony_development_speed_mult = 50
+}
+
+GF_debug_4 = {
+	GF_OGAS_threads_add = 1
+}
+
+GF_debug_naval = {
+	country_command_limit_add = 500
+	country_naval_cap_add = 5000
+}
+
+GF_debug_5 = {
+	country_base_gf_core_chip_produces_add = 1
+}

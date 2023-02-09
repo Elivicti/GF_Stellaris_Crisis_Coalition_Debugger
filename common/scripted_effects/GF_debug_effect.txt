@@ -1,0 +1,24 @@
+__GF_NO_USE__ = {
+	set_planet_flag = flag_p_gf_has_collapse_relic_site_1
+	set_planet_flag = flag_p_gf_has_collapse_relic_site_2
+	set_planet_flag = flag_p_gf_has_collapse_relic_site_3
+}
+
+remove_ui_opt ={
+	remove_country_flag = GF_nyto_opt01
+	remove_country_flag = GF_nyto_opt02
+	remove_country_flag = GF_nyto_opt03
+	remove_country_flag = GF_nyto_opt04
+	remove_country_flag = user_GF_nyto_opt01
+	remove_country_flag = user_GF_nyto_opt02
+	remove_country_flag = user_GF_nyto_opt03
+	remove_country_flag = user_GF_nyto_opt04
+}
+
+GF_threads_tooltip = {
+	hidden_effect = {
+		GF_update_OGAS_threads_variable = yes
+	}
+	custom_tooltip = GF_OGAS_threads_info
+}
+
