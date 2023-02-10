@@ -41,3 +41,7 @@ GF_debug_naval = {
 GF_debug_5 = {
 	country_base_gf_core_chip_produces_add = 1
 }
+
+GF_debug_6 = {
+	GF_doll_assembly_speed_mult = 1
+}
