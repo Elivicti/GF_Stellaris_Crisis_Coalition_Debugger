@@ -1023,3 +1023,45 @@ country_event = {
 
 	}
 }
+
+country_event = {
+	id = gfdebug.105
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_global_flag = GF_Stellairs_Crisis_Coalition_Extension_Installed
+		remove_global_flag = GF_Stellairs_Crisis_Coalition_Extension_Enabled
+
+		set_variable = { which = lcnt value = 0 }
+
+		export_trigger_value_to_variable = {
+			trigger = count_owned_leader
+			parameters = { limit = { GF_is_doll_leader = yes } }
+			variable = lcnt
+		}
+		every_envoy = {
+			limit = { GF_is_doll_leader = yes }
+			owner = { change_variable = { which = lcnt value = 1 } }
+		}
+	}
+
+	option = {
+		name = OK
+		random_owned_species = {
+			limit = { has_trait = GF_trait_doll }
+			save_event_target_as = doll
+		}
+		while = {
+			count = 5
+			create_leader = {
+				species = owner_main_species
+				class = random
+			}
+			last_created_leader = {
+				change_species = event_target:doll
+				add_trait = GF_trait_leader_doll
+			}
+		}
+	}
+}

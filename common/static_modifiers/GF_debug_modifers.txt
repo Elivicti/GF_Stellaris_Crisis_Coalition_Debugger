@@ -45,3 +45,7 @@ GF_debug_5 = {
 GF_debug_6 = {
 	GF_doll_assembly_speed_mult = 1
 }
+
+GF_debug_7 = {
+	envoys_add = 15
+}
