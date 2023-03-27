@@ -400,6 +400,12 @@ country_event = {
 		room = ethic_griffin_room
 	}
 
+	trigger = {
+		GF_should_country_has_collapse_liquid_deficit_debuff = {
+			HAS_TECH = GF_tech_collapsetech_weaponize
+		}
+	}
+
 	option = {
 		name = "opt_1"
 		is_dialog_only = yes
@@ -1061,6 +1067,136 @@ country_event = {
 			last_created_leader = {
 				change_species = event_target:doll
 				add_trait = GF_trait_leader_doll
+			}
+		}
+	}
+}
+
+fleet_event = {
+	id = gfdebug.1000
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { has_star_flag = system_no_cloaking }
+		is_cloaked = yes
+		# OR = {
+		# 	always = yes
+		# 	from = {
+		# 		exists = starbase
+		# 		starbase = {
+		# 			# has_starbase_building =
+		# 		}
+		# 	}
+		# }
+	}
+
+	immediate = {
+		set_cloaking_active = no
+		save_event_target_as = decloaking_fleet
+		from = {
+			save_event_target_as = decloaking_system
+		}
+		every_country = {
+			country_event = {
+				id = gfdebug.1001
+			}
+			
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.1001
+	desc = gfdebug.1001.desc
+
+	is_triggered_only = yes
+	trigger = {
+		is_ai = no
+	}
+
+	option = {
+		name = OK
+	}
+}
+
+country_event = {
+	id = gfdebug.1002
+	hide_window = yes
+
+	is_triggered_only = yes
+	trigger = {
+		from = {
+			OR = {
+				is_megastructure_type = spy_orb_3
+				is_megastructure_type = spy_orb_4
+			}
+		}
+	}
+
+	immediate = {
+		fromfrom = {
+			set_star_flag = system_no_cloaking
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.800
+
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					max_jumps = 2
+				}
+				any_system_planet = { is_asteroid = yes }
+			}
+			create_starbase = {
+				size = starbase_outpost
+				owner = root.owner
+			}
+			random_system_planet = {
+				limit = {
+					is_asteroid = yes
+				}
+				change_pc = pc_habitat
+				reroll_deposits = yes
+				create_colony = {
+					owner = root
+					species = root
+				}
+			}
+		}
+		
+		random_system = {
+			limit = {
+				distance = {
+					source = root.capital_scope.solar_system
+					max_jumps = 2
+				}
+				any_system_planet = {
+					is_a_planet = yes
+				}
+			}
+			create_starbase = {
+				size = starbase_outpost
+				owner = root.owner
+			}
+			random_system_planet = {
+				limit = {
+					is_a_planet = yes
+				}
+				change_pc = pc_continental
+				reroll_deposits = yes
+				create_colony = {
+					owner = root
+					species = root
+				}
 			}
 		}
 	}

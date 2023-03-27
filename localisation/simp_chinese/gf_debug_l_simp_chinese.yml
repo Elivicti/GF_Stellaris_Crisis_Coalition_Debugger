@@ -7,3 +7,6 @@
 
  GF_archive_title:0 "[This.GF_get_archive_title]"
  GF_archive_system_desc:0 "§Y<执政官身份确认，档案库权限已开启>§!\n\n档案库系统是由联合政府建立，用于存储最高机密档案和内部资料的大型数据库，该数据库基于OGAS系统开发和运作，能够有效地保障机密数据的安全，并高效地对权限进行分级管理，以保障联合政府内部数据和信息的传递效率，确保各级部门的协作。\n\n档案库系统版本：§M14E7D67§!"
+
+
+ gfdebug.1001.desc:0 "§Y[decloaking_fleet.GetName]§!舰队在§Y[decloaking_system.GetName]§!星系被强制解除隐形！"
