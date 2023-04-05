@@ -21,6 +21,30 @@ GF_debug_modifier = {
 	country_base_minor_artifacts_produces_add = 1
 }
 
+GF_debug_cons = {
+	country_resource_max_add = 100
+	planet_army_build_speed_mult = 1
+	planet_building_build_speed_mult = 1
+	shipclass_military_build_speed_mult = 1
+	shipclass_constructor_build_speed_mult = 1
+	shipclass_colonizer_build_speed_mult = 1
+	shipclass_science_ship_build_speed_mult = 1
+	shipclass_mining_station_build_speed_mult = 1
+	shipclass_research_station_build_speed_mult = 1
+	shipclass_military_station_build_speed_mult = 1
+	shipclass_observation_station_build_speed_mult = 1
+	shipclass_starbase_build_speed_mult = 1
+	shipclass_military_special_build_speed_mult = 1
+	megastructure_build_speed_mult = 1
+	starbase_shipyard_build_speed_mult = 1
+	starbase_defensive_war_ship_build_speed_mult = 1
+	starbase_building_build_speed_mult = 1
+	starbase_module_build_speed_mult = 1
+	terraform_speed_mult = 1
+	planet_decision_enact_speed_mult = 1
+	planet_clear_blocker_speed_mult = 1
+}
+
 GF_debug_2 = {
 	GF_planet_jobs_pop_assemblers_produces_mult = 1
 }
@@ -48,4 +72,8 @@ GF_debug_6 = {
 
 GF_debug_7 = {
 	planet_pop_assemblers_gf_core_chip_upkeep_add = 50
+}
+
+GF_debug_8 = {
+	ship_cloaking_strength_add = 50
 }

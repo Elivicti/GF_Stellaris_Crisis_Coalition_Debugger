@@ -14,8 +14,13 @@ country_event = {
 
 	option = {
 		name = OK
-		add_resource = {
-			energy = 500000
+		add_modifier = {
+			modifier = GF_debug_modifier
+			multiplier = 100000
+		}
+		add_modifier = {
+			modifier = GF_debug_cons
+			multiplier = 100000
 		}
 		give_technology = {
 			tech = GF_tech_collapse_relic_tech
@@ -39,6 +44,10 @@ country_event = {
 		}
 		give_technology = {
 			tech = tech_quantum_catapult
+			message = no
+		}
+		give_technology = {
+			tech = GF_tech_combat_ogas_computers
 			message = no
 		}
 		add_relic = GF_relic_orb_mainframe_alpha
@@ -1198,6 +1207,42 @@ country_event = {
 					species = root
 				}
 			}
+		}
+	}
+}
+
+ship_event = {
+	id = gfdebug.3000
+	is_triggered_only = yes
+
+	trigger = {
+		is_ship_size = GF_test_juggernaut
+	}
+
+	option = {
+		name = OK
+		starbase = {
+			set_starbase_module = {
+				slot = 1
+				module = detection_array
+			}
+			set_starbase_module = {
+				slot = 2
+				module = detection_array
+			}
+			set_starbase_module = {
+				slot = 3
+				module = detection_array
+			}
+			set_starbase_module = {
+				slot = 4
+				module = detection_array
+			}
+			set_starbase_module = {
+				slot = 5
+				module = detection_array
+			}
+
 		}
 	}
 }

@@ -1,0 +1,91 @@
+@shipAuraRange = 80
+@stationSmallAuraRange = 70
+@stationMediumAuraRange = 90
+@stationLargeAuraRange = 110
+
+@very_low_strength	= 1
+@low_strength		= 2
+@medium_strength	= 3
+@high_strength		= 4
+@very_high_strength	= 5
+
+@basic_cloaking_weight			= 5
+@advanced_cloaking_weight		= 10
+@elite_cloaking_weight			= 15
+@dark_matter_cloaking_weight	= 20
+@psi_cloaking_weight			= 25
+
+utility_component_template = { #Archaeo Detection Scrambler
+	key = "GF_SHIP_AURA_CLOAKING_ENHANCER"
+	size = medium
+	icon = "GFX_ship_part_aura_shield_recharger"
+	icon_frame = 1
+	power = 20
+
+	resources = {
+		category = ship_components
+		cost = {
+			
+		}
+	}
+
+	component_set = "ship_aura_components"
+
+
+	custom_tooltip = "GF_SHIP_AURA_CLOAKING_ENHANCER_EFFECT"
+
+	modifier = {
+		# description = tr_genetics_adopt_modifier_desc
+		# description_parameters = {
+		# 	POINTS = 2
+		# }
+	}
+
+	friendly_aura = {
+		name = "GF_AURA_CLOAKING_ENHANCER"
+		radius = @shipAuraRange
+		apply_on = ships
+
+		# A ship can only be affected by one aura of a certain id.
+		# If multiple auras have the same ID the one with the highest priority will be applied.
+		stack_info = {
+			id = GF_friendly_aura_cloaking_enhancer
+			priority = 20
+		}
+
+		modifier = {
+			ship_cloaking_strength_add = 5
+		}
+
+		graphics = {
+			area_effect = {
+				entity = "circle_area_entity"
+				dynamic_scale = yes
+			}
+			ship_effect = {
+				entity = "ship_aura_positive_entity"
+				dynamic_scale = no
+			}
+		}
+	}
+	friendly_aura = {
+		name = GF_AURA_CLOAKING_ENHANCER
+		radius = @shipAuraRange
+		apply_on = ships
+
+		stack_info = {
+			id = GF_friendly_aura_cloaking_shield_fixer
+			priority = 20
+		}
+		limit = { is_cloaked = yes }
+
+		modifier = {
+			ship_shield_reduction = -0.5
+		}
+	}
+
+
+	ai_weight = {
+		weight = 10
+	}
+}

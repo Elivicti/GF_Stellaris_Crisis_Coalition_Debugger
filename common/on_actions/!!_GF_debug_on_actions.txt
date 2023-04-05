@@ -799,6 +799,7 @@ on_policy_changed = {
 # From = Planet
 on_ship_built = {
 	events = {
+		gfdebug.3000
 	}
 }
 

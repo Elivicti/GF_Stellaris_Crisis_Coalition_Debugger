@@ -1,0 +1,6 @@
+component_set = {
+	key = "GF_CLOAKING_PARTS"
+
+	icon = "GFX_ship_part_cloak_dark_matter"
+	icon_frame = 1
+}
