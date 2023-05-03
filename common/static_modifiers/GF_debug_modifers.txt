@@ -67,11 +67,11 @@ GF_debug_5 = {
 }
 
 GF_debug_6 = {
-	GF_doll_assembly_speed_mult = 1
+	GF_OGAS_threads_add = 1
 }
 
 GF_debug_7 = {
-	planet_pop_assemblers_gf_core_chip_upkeep_add = 50
+	GF_OGAS_threads_used_add = 1
 }
 
 GF_debug_8 = {

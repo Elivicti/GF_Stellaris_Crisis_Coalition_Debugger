@@ -1,10 +1,16 @@
 # Triggers when the game starts
 on_game_start = {
 	events = {
-	}
-	random_events = {
+		gfdebug.900
 	}
 }
+
+test_on_action = {
+	events = {
+		
+	}
+}
+
 
 on_game_start_country = {
 	events = {
@@ -735,6 +741,7 @@ on_leader_fired = {
 # From = Leader
 on_leader_level_up = {
 	events = {
+		gfdebug.911
 	}
 }
 
