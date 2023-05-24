@@ -18,10 +18,10 @@ country_event = {
 			modifier = GF_debug_modifier
 			multiplier = 100000
 		}
-		add_modifier = {
-			modifier = GF_debug_cons
-			multiplier = 100000
-		}
+		# add_modifier = {
+		# 	modifier = GF_debug_cons
+		# 	multiplier = 100000
+		# }
 		give_technology = {
 			tech = GF_tech_collapse_relic_tech
 			message = no
@@ -53,7 +53,7 @@ country_event = {
 		add_relic = GF_relic_orb_mainframe_alpha
 		set_variable = {
 			which = v_GF_zion_favor
-			value = 50
+			value = 10
 		}
 	}
 
@@ -85,7 +85,7 @@ country_event = {
 	immediate = {
 		random_owned_leader = {
 			limit = {
-				NOT = { leader_class = ruler }
+				NOT = { is_ruler = yes }
 			}
 			save_event_target_as = choosing_leader
 		}
@@ -1248,14 +1248,46 @@ country_event = {
 
 country_event = {
 	id = gfdebug.902
-	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
-		has_global_flag = host_country_set
+		
 	}
 
 	immediate = {
-		set_country_flag = other_country
+		if = {
+			limit = {
+				NOT = { is_variable_set = v_GF_zion_favor }
+			}
+			set_variable = {
+				which = v_GF_zion_favor
+				value = 0
+			}
+		}
+	}
+
+	option = {
+		name = OK
+		GF_change_zion_favor = { VALUE = 10 }
+		GF_change_zion_favor = { VALUE = 0 }
+		GF_change_zion_favor = { VALUE = -10 }
+	}
+
+	option = {
+		name = OK
+		allow = {
+			GF_zion_require_resource_stockpile = {
+				RES = energy
+				TIER = 1
+			}
+		}
+		GF_zion_project_cost = {
+			RES = energy
+			TIER = 1
+		}
+	}
+
+	option = {
+		name = OK
 	}
 }
 
@@ -1274,6 +1306,157 @@ country_event = {
 		give_technology = {
 			tech = GF_tech_ternary_quantum_computing
 			message = no
+		}
+		give_technology = {
+			tech = GF_tech_ogas_computing_center
+			message = no
+		}
+	}
+}
+
+
+
+country_event = {
+	id = gfdebug.915
+	title = aaa
+	desc = aaa
+
+	is_triggered_only = yes
+	immediate = {
+		random_owned_species = {
+			limit = { is_species_class = GF_doll }
+			save_event_target_as = doll_species
+		}
+	}
+
+	option = {
+		name = OK
+		create_leader = {
+			name = random
+			species = owner
+			class = scientist
+			
+			traits = { trait = GF_trait_leader_scientist_16lab }
+		}
+		create_leader = {
+			name = random
+			species = event_target:doll_species
+			class = governor
+
+			traits = {
+				trait = GF_trait_leader_doll
+				trait = GF_trait_leader_governor_plus
+				trait = GF_trait_leader_enhanced_governor
+				trait = GF_trait_leader_core_glitch_governor
+			}
+		}
+		create_leader = {
+			name = random
+			species = event_target:doll_species
+			class = scientist
+
+			traits = {
+				trait = GF_trait_leader_doll
+				trait = GF_trait_leader_scientist_plus
+				trait = GF_trait_leader_enhanced_scientist
+				trait = GF_trait_leader_core_glitch_scientist
+			}
+		}
+		create_leader = {
+			name = random
+			species = event_target:doll_species
+			class = admiral
+
+			traits = {
+				trait = GF_trait_leader_doll
+				trait = GF_trait_leader_admiral_plus
+				trait = GF_trait_leader_enhanced_admiral
+				trait = GF_trait_leader_core_glitch_admiral
+			}
+		}
+		create_leader = {
+			name = random
+			species = event_target:doll_species
+			class = general
+
+			traits = {
+				trait = GF_trait_leader_doll
+				trait = GF_trait_leader_general_plus
+				trait = GF_trait_leader_enhanced_general
+				trait = GF_trait_leader_core_glitch_general
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = gfdebug.920
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		change_pc = pc_GF_automated_city
+		set_planet_entity = {
+			entity = GF_automated_city_planet
+			graphical_culture = owner
+		}
+		set_planet_flag = flag_p_GF_automated_city_base_resources
+		set_planet_flag = flag_p_GF_automated_city_advanced_resources
+		set_planet_flag = flag_p_GF_automated_city_special_resources
+		set_planet_size = 25
+		if = {
+			limit = { is_colony = no }
+			random_country = {
+				limit = { is_ai = no }
+				save_event_target_as = player
+			}
+			create_colony = {
+				species = event_target:player
+				owner = event_target:player
+			}
+		}
+		else = { owner = { save_event_target_as = player } }
+		event_target:player = {
+			add_relic = GF_relic_orb_mainframe_alpha
+			set_country_flag = flag_GF_artifact_analyse_orb_mainframe_alpha_finished
+			give_technology = {
+				tech = GF_tech_ternary_quantum_computing
+				message = no
+			}
+			add_modifier = {
+				modifier = GF_debug_4
+				multiplier = 20
+			}
+		}
+		add_modifier = { modifier = GF_automated_city_construction_ongoing days = 540 }
+		add_modifier = { modifier = GF_automated_city_status }
+
+		if = {
+			limit = { free_building_slots < 1 }
+			remove_last_built_building = yes
+		}
+		add_building = building_GF_connection_nexus
+		every_owned_pop = { pop_change_ethic = ethic_egalitarian }
+	}
+}
+
+country_event = {
+	id = gfdebug.930
+
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		random_playable_country = {
+			limit = { is_ai = yes }
+			save_event_target_as = ai
+		}
+		random_owned_megastructure = {
+			limit = { GF_is_computing_center = yes }
+			solar_system.starbase = {
+				set_owner = event_target:ai
+			}
 		}
 	}
 }

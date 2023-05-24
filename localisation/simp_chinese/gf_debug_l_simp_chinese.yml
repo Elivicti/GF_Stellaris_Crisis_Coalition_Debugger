@@ -10,3 +10,5 @@
 
 
  gfdebug.1001.desc:0 "§Y[decloaking_fleet.GetName]§!舰队在§Y[decloaking_system.GetName]§!星系被强制解除隐形！"
+
+ GF_debug_planet_desc:0 "§TThis = [This.GetName]\nFrom = [From.GetName]\nFromFrom = [FromFrom.GetName]\nFromFromFrom = [FromFromFrom.GetName]\nFromFromFromFrom = [FromFromFromFrom.GetName]\nOwner = [Owner.GetName]\nPlanet = [Planet.GetName]\nPrev = [Prev.GetName]§!"
