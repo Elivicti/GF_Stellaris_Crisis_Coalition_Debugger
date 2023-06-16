@@ -1445,18 +1445,170 @@ country_event = {
 	id = gfdebug.930
 
 	is_triggered_only = yes
+	immediate = {
+		random_owned_species = {
+			limit = { has_trait = GF_trait_doll }
+			save_event_target_as = doll
+		}
+		random_owned_leader = {
+			limit = { is_ruler = no }
+			change_leader_portrait = new_type
+		}
+		every_pool_leader = { kill_leader = { show_notification = no } }
+
+	}
 
 	option = {
 		name = OK
-		random_playable_country = {
-			limit = { is_ai = yes }
-			save_event_target_as = ai
-		}
-		random_owned_megastructure = {
-			limit = { GF_is_computing_center = yes }
-			solar_system.starbase = {
-				set_owner = event_target:ai
+		create_leader = {
+			name = random
+			gender = female
+			class = scientist
+			species = event_target:doll
+			traits = {
+				trait = GF_trait_leader_scientist_16lab
+			}
+			effect = {
+				change_leader_portrait = GF_doll_000
 			}
 		}
 	}
 }
+
+planet_event = {
+	id = gfdebug.940
+
+	is_triggered_only = yes
+	immediate = {
+		create_country = {
+			type = faction
+			effect = {
+				set_faction_hostility = {
+					target = root.owner
+					#set_friendly = yes
+					set_neutral = yes
+				}
+				save_event_target_as = test_country
+			}
+		}
+	}
+
+	option = {
+		name = OK
+		create_army = {
+			type = GF_army_defensive_armored_train
+			owner = event_target:test_country
+		}
+		last_created_army = {
+			set_owner = root.owner
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.950
+
+	trigger = {
+
+	}
+	is_triggered_only = yes
+	immediate = {
+		give_technology = { tech = GF_tech_observe_reflection message = no  }
+		give_technology = { tech = GF_tech_mass_rebuild_function message = no }
+		give_technology = { tech = GF_tech_collapse message = no }
+		give_technology = { tech = GF_tech_recover_plan message = no }
+		give_technology = { tech = GF_tech_ecological_recovery message = no }
+	}
+
+	option = {
+		name = OK
+		country_event = { id = GF_relic.0 }
+		add_resource = {
+			energy = 100000
+			alloys = 100000
+			influence = 1000
+		}
+		add_modifier = { modifier = GF_debug_modifier multiplier = 100000 }
+		add_modifier = { modifier = GF_debug_6 }
+	}
+}
+
+planet_event = {
+	id = gfdebug.960
+
+	is_triggered_only = yes
+
+	immediate = {
+		create_species = {
+			name = random
+			class = random_non_machine
+			effect = { save_event_target_as = enemy_species }
+		}
+		create_country = {
+			type = default
+			name = random
+			authority = random
+			ethos = random
+			civics = random
+			flag = random
+			species = event_target:enemy_species
+			effect = { save_event_target_as = enemy_country }
+		}
+	}
+
+	option = {
+		name = OK
+		create_colony = {
+			owner = event_target:enemy_country
+			species = event_target:enemy_country
+		}
+		while = {
+			count = 8
+			add_district = district_city
+			create_pop = { species = event_target:enemy_country }
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.970
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	option = {
+		name = OK
+		clone_leader = {
+			target = ruler
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.975
+	desc = gfdebug.975.desc
+
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

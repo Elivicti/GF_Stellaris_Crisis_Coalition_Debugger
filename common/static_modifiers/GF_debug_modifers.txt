@@ -67,7 +67,10 @@ GF_debug_5 = {
 }
 
 GF_debug_6 = {
-	GF_OGAS_threads_add = 1
+	ship_archaeological_site_clues_add = 50
+	ship_archaeological_site_excavation_speed_mult = 20
+	ship_speed_mult = 100
+	starbase_building_build_speed_mult = 100
 }
 
 GF_debug_7 = {
