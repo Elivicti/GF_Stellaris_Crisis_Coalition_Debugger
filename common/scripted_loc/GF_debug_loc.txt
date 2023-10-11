@@ -8,3 +8,8 @@ defined_text = {
 	}
 	default = default_title
 }
+
+defined_text = {
+	name = GetSystemPlanetCount
+	value = value:GF_debug_get_system_planet_count
+}

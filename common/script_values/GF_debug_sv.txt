@@ -1,0 +1,12 @@
+GF_debug_get_system_planet_count = {
+	complex_trigger_modifier = {
+		trigger = count_system_planet
+		parameters = {
+			limit = {
+				is_star = no
+				is_asteroid = no
+			}
+		}
+		mode = add
+	}
+}

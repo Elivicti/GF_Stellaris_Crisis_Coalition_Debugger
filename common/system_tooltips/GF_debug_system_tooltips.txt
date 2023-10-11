@@ -1,0 +1,8 @@
+#root = system
+#from = player
+# system_planet_count_tooltip = {
+# 	custom_tooltip = {
+# 		success_text = system_planet_count
+# 		exists = from
+# 	}
+# }

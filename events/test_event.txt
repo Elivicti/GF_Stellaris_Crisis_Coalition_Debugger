@@ -1,0 +1,20 @@
+namespace = test
+pop_event = {
+	id = test.10
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		switch = {
+			trigger = last_changed_species_rights_type
+			citizenship          = { log = "last changed: citizenship" }
+			living_standard      = { log = "last changed: living_standard" }
+			military_service     = { log = "last changed: military_service" }
+			migration_control    = { log = "last changed: migration_control" }
+			population_control   = { log = "last changed: population_control" }
+			colonization_control = { log = "last changed: colonization_control" }
+			purge                = { log = "last changed: purge" }
+			slavery              = { log = "last changed: slavery" }
+			default              = { log = "last changed: unkown ????" }
+		}
+	}
+}

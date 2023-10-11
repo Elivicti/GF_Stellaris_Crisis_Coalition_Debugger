@@ -13,4 +13,11 @@
 
  GF_debug_planet_desc:0 "§TThis = [This.GetName]\nFrom = [From.GetName]\nFromFrom = [FromFrom.GetName]\nFromFromFrom = [FromFromFrom.GetName]\nFromFromFromFrom = [FromFromFromFrom.GetName]\nOwner = [Owner.GetName]\nPlanet = [Planet.GetName]\nPrev = [Prev.GetName]§!"
 
- gfdebug.975.desc:0 "[this.GetName]\n[from.GetTitle] [from.GetName]"
+ gfdebug.201.desc:0 "1\n2\n3"
+
+ gfdebug.970.desc:0 ""
+ gfdebug.975.desc:0 "this = [this.GetName]\nthis.adj = [this.GetAdj]\n\nowner_main_species = [main.GetName]\nowner_main_species.plural = [main.GetNamePlural]\nowner_main_species.adj = [main.GetAdj]\n\ndoll = [doll.GetName]\ndoll.plural = [doll.GetNamePlural]\ndoll.adj = [doll.GetAdj]"
+
+ gfdebug.1002.desc:0 "[from.GetName] has entered [fromfrom.GetName]"
+
+ system_planet_count:0 "星系内星球数量：[this.GetSystemPlanetCount]"

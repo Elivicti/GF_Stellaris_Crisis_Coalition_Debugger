@@ -90,3 +90,31 @@ GF_debug_planet = {
 	icon_frame = 1
 	custom_tooltip = GF_debug_planet_desc
 }
+
+GF_debug_10 = {
+	ascension_perks_add = 64
+}
+
+GF_debug_leaders = {
+	country_leader_cap_add = 1
+}
+
+GF_debug_sys_1 = {
+	ship_speed_mult = 1
+}
+
+GF_debug_sys_2 = {
+	ship_ftl_jumpdrive_range_mult = 1
+}
+
+GF_debug_sys_3 = {
+	ship_ftl_jumpdrive_range_mult = -2
+}
+
+GF_debug_11 = {
+	envoys_add = -10
+}
+
+GF_debug_12 = {
+	leader_trait_selection_options_add = 50
+}

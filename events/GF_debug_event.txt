@@ -216,28 +216,26 @@ country_event = {
 	}
 }
 
-country_event = {
+planet_event = {
 	id = gfdebug.7
 	is_triggered_only = yes
 
 	option = {
 		name = OK
 
-		capital_scope = {
-			create_species = {
-				name = random
-				class = ROBOT
-				traits = random
-				effect = {
-					save_event_target_as = robot_species
-				}
+		create_species = {
+			name = "测试机器人"
+			class = ROBOT
+			traits = random
+			effect = {
+				save_event_target_as = robot_species
 			}
-			while = {
-				count = 5
-				create_pop = {
-					species = event_target:robot_species
-					ethos = root
-				}
+		}
+		while = {
+			count = 10
+			create_pop = {
+				species = event_target:robot_species
+				ethos = root
 			}
 		}
 	}
@@ -662,7 +660,7 @@ country_event = {
 				name = "GF_ANDROID"
 				class = GF_doll
 				portrait = GF_doll
-				name_list = GF_doll_1
+				name_list = GF_DOLL
 				traits = {
 					trait = GF_trait_doll
 				}
@@ -684,13 +682,16 @@ country_event = {
 country_event = {
 	id = gfdebug.15
 	is_triggered_only = yes
-	
-	option = {
-		name = OK
+
+	immediate = {
 		random_owned_species = {
 			limit = { has_trait = GF_trait_doll }
 			save_event_target_as = doll_species
 		}
+	}
+	
+	option = {
+		name = OK
 		add_resource = {
 			influence = 1000
 		}
@@ -766,6 +767,81 @@ country_event = {
 	}
 }
 
+country_event = {
+	id = gfdebug.16
+
+	is_triggered_only = yes
+	trigger = {
+		any_owned_species = { has_trait = GF_trait_sequela }
+		any_owned_species = { has_trait = GF_trait_doll }
+	}
+	immediate = {
+		random_owned_species = {
+			limit = { has_trait = GF_trait_sequela }
+			save_event_target_as = human
+		}
+		random_owned_species = {
+			limit = { has_trait = GF_trait_doll }
+			save_event_target_as = doll
+			set_citizenship_type = {
+				type = citizenship_GF_doll_full
+				country = prev
+				cooldown = no
+			}
+		}
+	}
+
+	option = {
+		name = OK
+		allow = {
+			event_target:human = {
+				any_species_pop = { has_citizenship_rights = yes }
+				has_citizenship_type = {
+					type = citizenship_full
+					country = prev
+				}
+			}
+		}
+	}
+	option = {
+		name = OK
+		allow = {
+			event_target:doll = {
+				any_species_pop = { has_citizenship_rights = yes }
+				has_citizenship_type = {
+					type = citizenship_GF_doll_full
+					country = prev
+				}
+			}
+		}
+	}
+
+	option = {
+		name = CANCEL
+	}
+}
+
+country_event = {
+	id = gfdebug.30
+
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_country_flag = block_this_event }
+	}
+
+	immediate = {
+		set_timed_country_flag = {
+			flag = block_this_event
+			days = 10
+		}
+		country_event = {
+			id = gfdebug.30
+			days = 10
+		}
+	}
+
+	option = { name = OK }
+}
 
 country_event = {
 	id = gfdebug.100
@@ -1081,72 +1157,184 @@ country_event = {
 	}
 }
 
-fleet_event = {
-	id = gfdebug.1000
+planet_event = {
+	id = gfdebug.150
 	hide_window = yes
+
 	is_triggered_only = yes
-
-	trigger = {
-		from = { has_star_flag = system_no_cloaking }
-		is_cloaked = yes
-		# OR = {
-		# 	always = yes
-		# 	from = {
-		# 		exists = starbase
-		# 		starbase = {
-		# 			# has_starbase_building =
-		# 		}
-		# 	}
-		# }
-	}
-
 	immediate = {
-		set_cloaking_active = no
-		save_event_target_as = decloaking_fleet
-		from = {
-			save_event_target_as = decloaking_system
-		}
-		every_country = {
-			country_event = {
-				id = gfdebug.1001
+		set_planet_flag = GF_debug_sys_1
+		solar_system = {
+			set_star_flag = GF_debug_sys_1
+			add_modifier = {
+				modifier = GF_debug_sys_1
+				mult = 1000
+				days = 180
 			}
-			
 		}
 	}
 }
 
-country_event = {
-	id = gfdebug.1001
-	desc = gfdebug.1001.desc
+planet_event = {
+	id = gfdebug.151
+	hide_window = yes
 
 	is_triggered_only = yes
-	trigger = {
-		is_ai = no
+	immediate = {
+		set_planet_flag = GF_debug_sys_2
+		solar_system = {
+			set_star_flag = GF_debug_sys_2
+			add_modifier = {
+				modifier = GF_debug_sys_2
+				mult = 1000
+				days = 180
+			}
+		}
+
+		
+	}
+}
+
+
+country_event = {
+	id = gfdebug.200
+	hide_window = yes
+
+	is_triggered_only = yes
+	immediate = {
+		random_owned_leader = {
+			limit = { GF_is_ogas_leader = yes }
+			leader_event = { id = gfdebug.201 }
+		}
+	}
+}
+
+leader_event = {
+	id = gfdebug.201
+	title = gfdebug.201.name
+	desc = gfdebug.201.desc
+
+	custom_gui = GF_OGAS_LeaderStoryEventWindow
+	custom_gui_option = GF_OGAS_story_event_option_entry
+
+	picture = GFX_evt_legendary_leader
+	event_window_type = leader_story
+
+	picture_event_data = {
+		room = owner
+		portrait = this
 	}
 
+	is_triggered_only = yes
+	immediate = {
+
+	}
+
+	option = {
+		name = OK
+	}
+	option = {
+		name = OK
+	}
+	option = {
+		name = OK
+	}
+	option = {
+		name = OK
+	}
 	option = {
 		name = OK
 	}
 }
 
 country_event = {
-	id = gfdebug.1002
+	id = gfdebug.565
+	is_triggered_only = yes
+
+	trigger = {
+		exists = last_created_design
+		last_created_design = {
+			has_component = GF_COLLAPSE_JUMP_DRIVE
+		}
+	}
+	immediate = {
+		last_created_design = {
+			set_design_flag = collapse_jump
+		}
+
+	}
+	option = {
+		name = OK
+	}
+}
+
+fleet_event = {
+	id = gfdebug.1000
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { has_star_flag = sys }
+	}
+
+	immediate = {
+		every_owned_ship = {
+			export_modifier_to_variable = {
+				modifier = ship_ftl_jumpdrive_range_mult
+				variable = jumpdrive_range
+			}
+			change_variable = {
+				which = jumpdrive_range
+				value = 1
+			}
+			multiply_variable = {
+				which = jumpdrive_range
+				value = -1
+			}
+			add_modifier = {
+				modifier = GF_debug_sys_2
+				multiplier = jumpdrive_range
+			}
+		}
+		owner = {
+			country_event = { id = gfdebug.1002 }
+		}
+
+	}
+}
+
+fleet_event = {
+	id = gfdebug.1001
 	hide_window = yes
 
 	is_triggered_only = yes
 	trigger = {
-		from = {
-			OR = {
-				is_megastructure_type = spy_orb_3
-				is_megastructure_type = spy_orb_4
-			}
-		}
+		from = { NOT = { has_star_flag = sys } }
+		any_owned_ship = { has_modifier = GF_debug_sys_2 }
 	}
 
 	immediate = {
-		fromfrom = {
-			set_star_flag = system_no_cloaking
+		every_owned_ship = {
+			remove_modifier = GF_debug_sys_2
 		}
+		owner = {
+			country_event = { id = gfdebug.1002 }
+		}
+	}
+}
+
+country_event = {
+	id = gfdebug.1002
+	desc = gfdebug.1002.desc
+
+	is_triggered_only = yes
+	trigger = {
+	}
+
+	immediate = {
+	}
+	option = {
+		name = OK
 	}
 }
 
@@ -1225,9 +1413,9 @@ event = {
 			# 	limit = { NOT = { has_global_flag = host_country_set } }
 			# 	set_country_flag = host_country
 			# }
-			fire_on_action = {
-				on_action = test_on_action
-			}
+			# fire_on_action = {
+			# 	on_action = test_on_action
+			# }
 		}
 	}
 }
@@ -1323,7 +1511,7 @@ country_event = {
 
 	is_triggered_only = yes
 	immediate = {
-		random_owned_species = {
+		random_galaxy_species = {
 			limit = { is_species_class = GF_doll }
 			save_event_target_as = doll_species
 		}
@@ -1331,6 +1519,24 @@ country_event = {
 
 	option = {
 		name = OK
+		create_leader = {
+			name = random
+			species = event_target:doll_species
+			class = governor
+			traits = {
+				trait = GF_trait_leader_ogas
+				trait = GF_trait_leader_ogas_glitch
+				trait = GF_trait_leader_ogas_subnet_core
+			}
+		}
+		create_leader = {
+			name = random
+			species = event_target:doll_species
+			class = governor
+			traits = {
+				trait = GF_trait_leader_ogas_2
+			}
+		}
 		create_leader = {
 			name = random
 			species = owner
@@ -1576,12 +1782,20 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		random_owned_species = {
+			limit = { has_trait = GF_trait_doll }
+			save_event_target_as = GF_doll_species
+			weights = {
+				base = 1
+				mult = trigger:num_traits
+			}
+		}
 	}
 
 	option = {
 		name = OK
-		clone_leader = {
-			target = ruler
+		event_target:GF_doll_species = {
+			set_species_flag = doll_with_most_traits
 		}
 	}
 }
@@ -1591,19 +1805,69 @@ country_event = {
 	desc = gfdebug.975.desc
 
 	is_triggered_only = yes
+	trigger = {
+		has_origin = GF_origin_commonwealth
+	}
+	immediate = {
+		owner_main_species = { save_event_target_as = main }
+		#random_owned_species = {
+		#	limit = { has_trait = GF_trait_doll }
+		#	save_event_target_as = doll
+		#}
+		random_galaxy_species = {
+			limit = {
+				NOT = { has_species_flag = flag_GF_ogas_doll }
+				has_trait = GF_trait_doll
+			}
+			log = "this  = [this.GetName]"
+			log = "owner = [owner.GetName]"
+			save_event_target_as = doll
+		}
+	}
 
 	option = {
 		name = OK
+		add_modifier = {
+			modifier = GF_debug_leaders
+			mult = 50
+		}
+		while = {
+			count = 2
+			create_leader = {
+				class = governor
+				species = event_target:doll
+
+				effect = {
+					add_trait_no_notify = random_negative
+				}
+			}
+			create_leader = {
+				class = scientist
+				species = event_target:doll
+
+				effect = {
+					add_trait_no_notify = random_negative
+				}
+			}
+			create_leader = {
+				class = admiral
+				species = event_target:doll
+
+				effect = {
+					add_trait_no_notify = random_negative
+				}
+			}
+			create_leader = {
+				class = general
+				species = event_target:doll
+
+				effect = {
+					add_trait_no_notify = random_negative
+				}
+			}
+		}
 	}
 }
-
-
-
-
-
-
-
-
 
 
 
