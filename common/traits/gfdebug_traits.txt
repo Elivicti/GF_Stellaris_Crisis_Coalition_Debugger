@@ -1,0 +1,77 @@
+
+# lt_test_councilor = {
+# 	inline_script = {
+# 		script = trait/icon
+# 		CLASS = official
+# 		ICON = "GFX_leader_trait_assembler"
+# 		RARITY = veteran
+# 		COUNCIL = yes
+# 		TIER = none
+# 	}
+# 	randomized = no
+# 	leader_class = { official }
+
+# 	triggered_councilor_modifier = {
+# 		country_base_influence_produces_add = 1
+# 		mult = trigger:has_skill
+# 	}
+# }
+
+# lt_test_self = {
+# 	inline_script = {
+# 		script = trait/icon
+# 		CLASS = official
+# 		ICON = "GFX_leader_trait_assembler"
+# 		RARITY = veteran
+# 		COUNCIL = no
+# 		TIER = none
+# 	}
+# 	randomized = no
+# 	leader_class = { official }
+
+# 	triggered_self_modifier = {
+# 		leader_officials_alloys_upkeep_add = 1
+# 		mult = trigger:has_skill
+# 	}
+# }
+
+# lt_test_self_councilor = {
+# 	inline_script = {
+# 		script = trait/icon
+# 		CLASS = official
+# 		ICON = "GFX_leader_trait_assembler"
+# 		RARITY = veteran
+# 		COUNCIL = yes
+# 		TIER = none
+# 	}
+# 	randomized = no
+# 	leader_class = { official }
+
+# 	triggered_self_modifier = {
+# 		leader_officials_alloys_upkeep_add = 1
+# 		mult = trigger:has_skill
+# 	}
+
+# 	triggered_councilor_modifier = {
+# 		country_base_influence_produces_add = 1
+# 		mult = trigger:has_skill
+# 	}
+# }
+
+# lt_test_planet = {
+# 	inline_script = {
+# 		script = trait/icon
+# 		CLASS = official
+# 		ICON = "GFX_leader_trait_assembler"
+# 		RARITY = veteran
+# 		COUNCIL = no
+# 		TIER = none
+# 	}
+# 	randomized = no
+# 	leader_class = { official }
+
+# 	triggered_planet_modifier = {
+# 		job_odd_factory_worker_add = 1
+# 		mult = trigger:has_skill
+# 	}
+# }

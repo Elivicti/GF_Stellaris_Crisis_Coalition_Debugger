@@ -102,19 +102,16 @@ country_event = {
 
 	option = {
 		name = OK
-		random_owned_species = {
-			limit = { has_trait = GF_trait_doll }
-			save_event_target_as = doll
-		}
-		while = {
-			count = 3
-			create_leader = {
-				species = event_target:doll
-				class = random
-				traits = {
-					trait = GF_trait_leader_doll
-					trait = leader_trait_stubborn
-				}
+		create_leader = {
+			class = commander
+			species = owner
+			skill = 4
+			set_age = 21
+			effect = {
+				remove_all_traits = yes
+				add_trait_no_notify = subclass_commander_general
+				add_trait_no_notify = leader_trait_heavy_hitter
+				add_trait_no_notify = leader_trait_restrained_2
 			}
 		}
 	}
@@ -385,7 +382,22 @@ country_event = {
 	}
 
 	immediate = {
-		
+		add_modifier = {
+			modifier = GF_debug_12
+		}
+		add_modifier = {
+			modifier = GF_debug_leaders
+			mult = 20
+		}
+		while = {
+			count = 10
+			create_leader = {
+				class = commander
+				species = owner
+				skill = 10
+				randomize_traits = no
+			}
+		}
 	}
 }
 
@@ -850,13 +862,22 @@ country_event = {
 	title = BLANK_STRING
 	desc = BLANK_STRING
 
-	diplomatic = yes
-	diplomatic_title = BLANK_STRING
-
-	custom_gui = "temp_ui"
-
 	option = {
-		name = BLANK_STRING
+		name = OK
+		create_leader = {
+			class = official
+			species = owner_main_species
+			skill = 1
+
+			effect = {
+				remove_all_traits = yes
+				add_trait_no_notify = lt_test_councilor
+				add_trait_no_notify = lt_test_self
+				add_trait_no_notify = lt_test_self_councilor
+				add_trait_no_notify = lt_test_planet
+				save_global_event_target_as = test_leader
+			}
+		}
 	}
 }
 
@@ -1154,6 +1175,50 @@ country_event = {
 				add_trait = GF_trait_leader_doll
 			}
 		}
+	}
+}
+
+
+# on_war_lost
+# Root = Loser Warleader
+# From = Winner Warleader
+# FromFrom = War
+country_event = {
+	id = gfdebug.120
+	hide_window = yes
+
+	is_triggered_only = yes
+	immediate = {
+		log = "--- [fromfrom.GetName] ---"
+		log = "loser  warleader = [this.GetName]"
+		log = "winner warleader = [from.GetName]"
+		fromfrom = {
+			log = " -- defenders -- "
+			every_defender = { log = "defender = [this.GetName]" }
+			log = " -- attackers -- "
+			every_attacker = { log = "attacker = [this.GetName]" }
+			log = " --  winners  -- "
+			every_war_participant = {
+				limit = {
+					is_war_participant = {
+						war = prev
+						side = root.from
+					}
+				}
+				log = "winner = [this.GetName]"
+			}
+			log = " --  losers   -- "
+			every_war_participant = {
+				limit = {
+					is_war_participant = {
+						war = prev
+						side = root
+					}
+				}
+				log = "loser = [this.GetName]"
+			}
+		}
+		log = "-----------------"
 	}
 }
 
@@ -1522,7 +1587,7 @@ country_event = {
 		create_leader = {
 			name = random
 			species = event_target:doll_species
-			class = governor
+			class = official
 			traits = {
 				trait = GF_trait_leader_ogas
 				trait = GF_trait_leader_ogas_glitch
@@ -1532,7 +1597,7 @@ country_event = {
 		create_leader = {
 			name = random
 			species = event_target:doll_species
-			class = governor
+			class = official
 			traits = {
 				trait = GF_trait_leader_ogas_2
 			}
@@ -1547,13 +1612,13 @@ country_event = {
 		create_leader = {
 			name = random
 			species = event_target:doll_species
-			class = governor
+			class = official
 
 			traits = {
 				trait = GF_trait_leader_doll
-				trait = GF_trait_leader_governor_plus
-				trait = GF_trait_leader_enhanced_governor
-				trait = GF_trait_leader_core_glitch_governor
+				trait = GF_trait_leader_official_plus
+				trait = GF_trait_leader_enhanced_official
+				trait = GF_trait_leader_core_glitch_official
 			}
 		}
 		create_leader = {
@@ -1571,25 +1636,13 @@ country_event = {
 		create_leader = {
 			name = random
 			species = event_target:doll_species
-			class = admiral
+			class = commander
 
 			traits = {
 				trait = GF_trait_leader_doll
-				trait = GF_trait_leader_admiral_plus
-				trait = GF_trait_leader_enhanced_admiral
-				trait = GF_trait_leader_core_glitch_admiral
-			}
-		}
-		create_leader = {
-			name = random
-			species = event_target:doll_species
-			class = general
-
-			traits = {
-				trait = GF_trait_leader_doll
-				trait = GF_trait_leader_general_plus
-				trait = GF_trait_leader_enhanced_general
-				trait = GF_trait_leader_core_glitch_general
+				trait = GF_trait_leader_commander_plus
+				trait = GF_trait_leader_enhanced_commander
+				trait = GF_trait_leader_core_glitch_commander
 			}
 		}
 	}
@@ -1834,7 +1887,7 @@ country_event = {
 		while = {
 			count = 2
 			create_leader = {
-				class = governor
+				class = official
 				species = event_target:doll
 
 				effect = {
@@ -1850,7 +1903,7 @@ country_event = {
 				}
 			}
 			create_leader = {
-				class = admiral
+				class = commander
 				species = event_target:doll
 
 				effect = {
@@ -1869,9 +1922,29 @@ country_event = {
 	}
 }
 
+pop_event = {
+	id = gfdebug.333
 
-
-
+	is_triggered_only = yes
+	immediate = { # this = pop
+		planet = { # this = planet
+			owner = { # this = country
+				prev = {
+					log = "prev = [this.GetName]"           # planet
+					prev = {
+						log = "prev={prev = [this.GetName]" # country
+					}
+				}
+				prev.prev = {
+					log = "prev.prev = [this.GetName]"      # country
+				}
+				prevprev = {
+					log = "prevprev = [this.GetName]"       # pop
+				}
+			}
+		}
+	}
+}
 
 
 

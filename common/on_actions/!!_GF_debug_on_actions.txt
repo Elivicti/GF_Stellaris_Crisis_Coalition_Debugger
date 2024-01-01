@@ -1007,6 +1007,7 @@ on_war_won = {
 # FromFrom = War
 on_war_lost = {
 	events = {
+		gfdebug.120
 	}
 }
 

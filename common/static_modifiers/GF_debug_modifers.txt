@@ -118,3 +118,11 @@ GF_debug_11 = {
 GF_debug_12 = {
 	leader_trait_selection_options_add = 50
 }
+
+GF_debug_13 = {
+	leader_skill_levels = 10
+}
+
+debug_1 = {
+	ship_build_cost_mult = 100
+}
